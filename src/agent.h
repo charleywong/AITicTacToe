@@ -30,3 +30,8 @@ void agent_gameover( int result, int cause );
  //  called at the end of the series of games
 void agent_cleanup();
 
+int minimax(int prev_move, int p, int depth, int alpha, int beta);
+
+int winner(int board_num, int p);	
+
+int game_over(int board_num);

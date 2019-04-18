@@ -1,6 +1,8 @@
 *.pl
 *.o
-lookt
+lookt.mac
 servt
 agent
+*.py
+*.sh
 
