@@ -107,8 +107,6 @@ int make_move(
     return( ILLEGAL_MOVE );
   }
   board[move[m-1]][move[m]] = player;
-  printf("====make_move====\n");
-  printf("%d %d\n", move[m-1],move[m]);
 
   if( gamewon( player,board[move[m-1]] )) {
     return( WIN );

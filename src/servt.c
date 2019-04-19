@@ -244,13 +244,6 @@ void play_games( int num_games, int move[] )
       //print_board( stdout,board,move[m-1],move[m] );
       m++;
       player = !player;
-      printf("====moves so far====\n");
-      for (int i = 0; i < m; ++i)
-      {
-        /* code */
-        printf("%d\n", move[i]);
-      }
-      printf("\n");
       if( is_human[player] ) {
         game_status =  human_step( player,m,move,board );
       }
