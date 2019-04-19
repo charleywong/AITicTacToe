@@ -146,8 +146,6 @@ int human_step(
     }
   }
   move[m] = c;
-  printf("====human_step====\n");
-  printf("%d\n\n", move[m]);
   // printf("palyer is %d\n", player);
   return( make_move( player,m,move,board ));
 }
@@ -236,11 +234,8 @@ void play_games( int num_games, int move[] )
     msec_left[0] = 1000*(seconds_initially - seconds_per_move);
     msec_left[1] = 1000*(seconds_initially - seconds_per_move);
     if( game > 0 || move[0] == 0 ) {// choose first move randomly
-      // move[0] = 1 + random()% 9;
-      // move[1] = 1 + random()% 9;
-      move[0] = 1;
-      move[1] = 5;
-      printf("%d %d\n", move[0],move[1]);
+      move[0] = 1 + random()% 9;
+      move[1] = 1 + random()% 9;
     }
     m = 1;
     player = first_player;

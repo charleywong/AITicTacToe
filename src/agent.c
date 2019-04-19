@@ -101,7 +101,7 @@ int agent_second_move( int board_num, int prev_move )
     if (board[prev_move][i] == EMPTY) {
       board[prev_move][i] = player;
       int tempScore = minimax(i, !player, depth+1, alpha, beta);
-      printf("tempScore for return: %d\n", tempScore);
+      // printf("tempScore for return: %d\n", tempScore);
       board[prev_move][i] = EMPTY;
       if (tempScore > alpha) {
         alpha = tempScore;
@@ -163,7 +163,7 @@ int agent_third_move(
 */
 int agent_next_move( int prev_move )
 {
-  printf("NEXT MOVE \n");
+  // printf("NEXT MOVE \n");
   // print
   int this_move;
   m++;
@@ -226,60 +226,62 @@ void agent_cleanup()
 
 ****************/
 int minimax(int board_num, int p, int depth, int alpha, int beta) {
-  printf("player is: %d\n", p);
-  printf("depth is: %d\n", depth);
+  // printf("player is: %d\n", p);
+  // printf("depth is: %d\n", depth);
   int endScore = winner(board_num,p);
-  printf("endScore: %d\n", endScore);
+  // printf("endScore: %d\n", endScore);
 
-  if (depth == 7 || game_over(board_num)) { // if max depth reached or no possible moves in curr board
+  // increasing depth will icnrease difficulty of AI since it will look deeper
+  if (depth == 8 || game_over(board_num)) { // if max depth reached or no possible moves in curr board
     return winner(board_num,p);
   }
 
-  printf("%d %d\n", alpha,beta);
+  // printf("%d %d\n", alpha,beta);
 
   if (p == player) {
-    printf("ai turn\n");
+    // printf("ai turn\n");
     for (int i = 1; i < 10; i++) {
       if (board[board_num][i] == EMPTY) {
         board[board_num][i] = player;
-        printf("%d %d %d\n", board[board_num][i],board_num, i);
-        printf("p: %d\n", p);
-        printf("alpha beta at call for ai: %d %d\n", alpha, beta);
+        // printf("%d %d %d\n", board[board_num][i],board_num, i);
+        // printf("p: %d\n", p);
+        // printf("alpha beta at call for ai: %d %d\n", alpha, beta);
         int tempScore = minimax(i, !p, depth+1, alpha, beta);
         board[board_num][i] = EMPTY;
         if (endScore < tempScore) {
-          endScore = tempScore - depth * 10;
+          // endScore = tempScore - depth * 10;
+          endScore = tempScore ;
         }
         if (endScore > alpha) {
           alpha = endScore;
         }
         if (alpha >= beta){
-          printf("returning alpha: %d\n", alpha);
+          // printf("returning alpha: %d\n", alpha);
           return alpha;
           // break;
         }
-        printf("alpha after iteration: %d\n", alpha);
+        // printf("alpha after iteration: %d\n", alpha);
       }
     } 
-    printf("alpha after for loop: %d\n", alpha);
+    // printf("alpha after for loop: %d\n", alpha);
     return alpha;
   } else {
-    printf("player turn\n");
+    // printf("player turn\n");
     for (int i = 1; i < 10; i++) {
       if(board[board_num][i] == EMPTY) {
         board[board_num][i] = !player;
-        printf("%d %d %d\n", board[board_num][i],board_num, i);
-        printf("alpha beta at call for player: %d %d\n", alpha, beta);
+        // printf("%d %d %d\n", board[board_num][i],board_num, i);
+        // printf("alpha beta at call for player: %d %d\n", alpha, beta);
         int tempScore = minimax(i, !p, depth+1,alpha, beta);
         board[board_num][i] = EMPTY;
-        printf("tempScore on player side: %d\n", tempScore);
+        // printf("tempScore on player side: %d\n", tempScore);
 
         if (endScore > tempScore) {
-          endScore = tempScore + depth *10;
+          endScore = tempScore + depth;
         }
         if (endScore < beta) {
           beta = endScore;
-          printf("beta on player side: %d\n", beta);
+          // printf("beta on player side: %d\n", beta);
         }
         if (beta <= alpha) {
           return beta;
